@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int tc;
+    cin>>tc;
+    for(int i=0; i<tc; i++)
+    {
+       long int n;
+        cin>>n;
+     float a[n][2];
+         char dir[n];
+        for(long int j=0; j<n; j++)
+        {
+            cin>>a[j][0];
+            cin>>a[j][1];
+            cin>>dir[j];
+        }int ans=n;
+        for(long int j=1;j<=4000;j++)
+    	{
+    	    for(long int k=0;k<n;k++)
+    	    {
+    	        if(dir[k]=='N')
+    	        a[k][1]=a[k][1]+0.5;
+    	        else if(dir[k]=='E')
+    	        a[k][0]=a[k][0]+0.5;
+    	        else if(dir[k]=='S')
+    	        a[k][1]=a[k][1]-0.5;
+    	        else if(dir[k]=='W')
+    	        a[k][0]=a[k][0]-0.5;
+    	    }
+    	    for(long int k=0; k<n-1; k++)
+    	    {
+    	        for(long int l=k+1; l<n; l++)
+    	        if(a[l][0]==a[k][0] && a[l][1]==a[k][1]&& dir[l]!='e'&&dir[k]!='e')
+    	            {dir[l]='v';
+    	            dir[k]='v';}
+    	    }
+    	    for(long int p=0; p<n; p++)
+    	    if(dir[p]=='v')
+    	        {dir[p]='e';
+    	        ans=ans-1;}
+    	}
+    	
+    	cout<<ans<<"\n";
+    }
+}
